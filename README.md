@@ -1,10 +1,11 @@
 # Design-Pattern-with-Golang
 
 ## 学习来源：https://lailin.xyz/post/singleton.html
-## 01_Singleton
+# 建造者模式（1-4）
+## 01_单例模式
 - 一个类只有一个实例/只有一份数据
 - [掘金文章：golang 设计模式-单例模式](https://juejin.cn/post/7124720007447052302#heading-6)
-## 02_Factory
+## 02_工厂模式
 - 创建类型不同的相关对象
 - [go语言中文网：Golang 工厂模式](https://studygolang.com/articles/27954)
 ### 简单工厂
@@ -17,11 +18,37 @@
 ### 抽象工厂
 - 一个工厂生产一类商品
 
-## 03_Builder
+## 03_建造者模式
 - 创建参数复杂的对象
 - 通用做法：为每一个struct提供一个builder，builder的每个变量创建set函数，调用builder的各种函数进行参数修改，最后把builder的所有值赋给struct，得到对象
+- [Options模式](https://mp.weixin.qq.com/s/z2w_MArNTjJfm9kbCFOOnA)
 - Golang做法：是一个很通用的写法，必填参数（变量）+ 可选参数（opt...），可选参数通过传入的opt函数进行调用，否则使用默认值
 
+## 04_原型模式
+- 通过已经创建好的示例作为原型，进行复制克隆（**深拷贝**）
+- 好处：高效；安全，无须知道对象创建细节
+
+
+- 深拷贝：拷贝整个对象，不共享内存
+- 浅拷贝：拷贝对象指针，共享内存
+
+
+- Golang：
+  - go中传递都是值传递
+  - 值类型的数据，默认全部都是深复制，Array、Int、String、Struct、Float，Bool
+  - 引用类型的数据，默认全部都是浅复制，Slice，Map
+  - 传入值参数e时候
+    - res := e（深拷贝）
+    - res := &e（浅拷贝）
+  - 传入指针参数e时候：
+    - res := *e（拷贝的是e本身的对象，深拷贝）
+    - res := e（拷贝的仅仅是指针）
+- Golang语法点：深拷贝除了上述*e方式，还常结合**序列化和反序列化**完成
+
+
+- json相关问题
+  - json.Unmarshal()第二个参数必须为指针
+  - 想要json序列化/反序列化的key必须首字母大写，否则json包访问不到私有变量
 ## 失血、贫血、充血、胀血
 - 失血模型：只有属性的get set方法的纯数据类，所有的业务逻辑完全由Service层来完成的，由于没有dao，Service直接操作数据库，进行数据持久化。
   - model：只包含get set方法
