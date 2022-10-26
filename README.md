@@ -1,7 +1,7 @@
 # Design-Pattern-with-Golang
 
 ## 学习来源：https://lailin.xyz/post/singleton.html
-# 建造者模式（1-4）
+# 建造者模式（1 - 4）
 ## 01_单例模式
 - 一个类只有一个实例/只有一份数据
 - [掘金文章：golang 设计模式-单例模式](https://juejin.cn/post/7124720007447052302#heading-6)
@@ -49,6 +49,14 @@
 - json相关问题
   - json.Unmarshal()第二个参数必须为指针
   - 想要json序列化/反序列化的key必须首字母大写，否则json包访问不到私有变量
+
+# 结构性模式（5 — ）
+## 05_代理模式
+- 代理模式为另一个对象提供一个替身或者占位符以控制对这个对象的访问
+- Golang实现关键：代理类和被代理类实现同一接口，代理类中持有被代理类对象
+- [Go设计模式(11)-代理模式](https://juejin.cn/post/6962375619774513183)
+- [Go 实现常用设计模式（九）代理模式](https://learnku.com/articles/33707)
+## 06_
 ## 失血、贫血、充血、胀血
 - 失血模型：只有属性的get set方法的纯数据类，所有的业务逻辑完全由Service层来完成的，由于没有dao，Service直接操作数据库，进行数据持久化。
   - model：只包含get set方法
