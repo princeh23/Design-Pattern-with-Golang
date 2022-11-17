@@ -76,6 +76,21 @@
 - **树形结构，每一层实现同一接口，使用同一方法进行统计/检索等等**
 ## 11_享元模式
 - **复用对象中不必要多次出现的变量，减小内存开销；map存储复用对象，指针指向共享内存**
+# 行为型模式
+## 12_观察者模式
+- **发布订阅机制：观察者提供Update方法，被观察者提供Add、Remove、Notify（调用所有Update方法）方法**
+- Golang tips：
+  - 函数参数是interface时，则传递值和指针均可接收
+  - slice删除i位置元素方法
+  - 注意：删除不要用range，range过程中len不变，但是删了元素有panic问题
+  ```golang
+  for i := 0; i < len(sub.observers); i++ {
+		if sub.observers[i] == observer {
+			sub.observers = append(sub.observers[:i], sub.observers[i+1:]...)
+			i--
+		}
+	}
+  ```
 ## 失血、贫血、充血、胀血
 - 失血模型：只有属性的get set方法的纯数据类，所有的业务逻辑完全由Service层来完成的，由于没有dao，Service直接操作数据库，进行数据持久化。
   - model：只包含get set方法
